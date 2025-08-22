@@ -43,6 +43,7 @@ const REWRITE_ACCEPT_ENCODING = process.env.REWRITE_ACCEPT_ENCODING === 'true';
 const APPEND_HEAD = process.env.APPEND_HEAD === 'true';
 const ALLOWED_HOSTS = getHosts(process.env.ALLOWED_HOSTS);
 const GZIP_METHOD = process.env.GZIP_METHOD;
+const ROBLOX_API_KEY = process.env.ROBLOX_API_KEY
 
 assert.ok(ACCESS_KEY, 'Missing ACCESS_KEY');
 assert.ok(ALLOWED_GZIP_METHODS.includes(GZIP_METHOD), `GZIP_METHOD must be one of the following values: ${JSON.stringify(ALLOWED_GZIP_METHODS)}`);
@@ -180,6 +181,7 @@ const onProxyReq = (proxyReq, req, res, options) => {
   if (REWRITE_ACCEPT_ENCODING) {
     proxyReq.setHeader('Accept-Encoding', 'gzip');
   }
+  proxyReq.setHeader('x-api-key', ROBLOX_API_KEY)
   proxyReq.removeHeader('roblox-id');
   proxyReq.removeHeader('proxy-access-key');
   proxyReq.removeHeader('proxy-target');
