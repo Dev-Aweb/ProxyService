@@ -1,5 +1,6 @@
 {
     "name": "robloxproxyservice",
+    "main": "server.js",
     "compatibility_date": "2026-01-20",
     "assets": {
         "directory": "./dist"
